@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama 💖</title>
+    <title>Para Minha Dama 💖</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,8 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #FF66B2, #FF1493);
+            background: #ff5f6d; /* Gradiente mais clean e moderno */
+            background: linear-gradient(45deg, #ff5f6d, #ffc3a0);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,14 +23,14 @@
             color: white;
             overflow: hidden;
             text-align: center;
-            transition: background 2s ease-in-out;
+            transition: background 1s ease-in-out;
         }
 
         h1 {
             font-size: 3.5em;
-            color: #fff;
+            color: white;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
             margin-bottom: 20px;
-            text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
             animation: fadeIn 2s ease-out;
         }
 
@@ -40,7 +41,6 @@
 
         .container {
             position: relative;
-            text-align: center;
             padding: 30px;
             animation: slideUp 2s ease-out;
         }
@@ -51,7 +51,7 @@
         }
 
         .heart {
-            font-size: 4em;
+            font-size: 5em;
             margin: 10px;
             animation: pulse 1.5s infinite alternate;
         }
@@ -62,47 +62,10 @@
             100% { transform: scale(1); opacity: 0.7; }
         }
 
-        .gift-box {
-            width: 250px;
-            height: 250px;
-            background-color: #FF66B2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gift-box:hover {
-            transform: scale(1.1);
-            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .gift-box span {
-            font-size: 4em;
-            color: white;
-        }
-
-        .message, .poem {
-            font-size: 1.5em;
-            color: #fff;
-            margin-top: 30px;
-            transition: opacity 2s ease, transform 1s ease;
-            opacity: 0;
-        }
-
-        .show-message, .show-poem {
-            opacity: 1;
-            transform: translateY(20px);
-        }
-
         .button {
             padding: 15px 35px;
             font-size: 1.4em;
-            background-color: #FF66B2;
+            background-color: #ff4c79;
             color: white;
             border: none;
             border-radius: 30px;
@@ -112,27 +75,24 @@
         }
 
         .button:hover {
-            background-color: #FF3399;
+            background-color: #ff2a57;
             transform: scale(1.1);
         }
 
-        .surprise {
-            font-size: 1.5em;
+        .message, .poem {
+            font-size: 1.4em;
             margin-top: 30px;
-            color: #FF94D9;
-            cursor: pointer;
-            text-shadow: 0 0 10px #FF94D9;
-            transition: all 0.3s ease;
+            opacity: 0;
+            transition: opacity 2s ease;
         }
 
-        .surprise:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 25px #FF94D9, 0 0 15px #FF66B2;
+        .show-message, .show-poem {
+            opacity: 1;
+            transform: translateY(20px);
         }
 
-        /* Estilo de mensagem pressionável */
         .pressable-message {
-            background-color: #FF66B2;
+            background-color: #ff4c79;
             border-radius: 15px;
             padding: 20px;
             font-size: 1.5em;
@@ -143,102 +103,39 @@
         }
 
         .pressable-message:hover {
-            background-color: #FF3399;
+            background-color: #ff2a57;
             transform: scale(1.05);
         }
 
         .pressable-message:active {
-            background-color: #FF1493;
+            background-color: #ff1493;
             transform: scale(0.95);
-        }
-
-        /* Confetti Animation */
-        .confetti {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            display: none;
-        }
-
-        .confetti div {
-            position: absolute;
-            background-color: #FF1493;
-            width: 12px;
-            height: 12px;
-            animation: confettiFall 3s infinite ease-in-out;
-        }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <h1>Para a Minha Dama 💖</h1>
+    <h1>Para Minha Dama 💖</h1>
 
     <div class="container">
         <div class="heart">❤️</div>
-        <div class="gift-box" onclick="revelarMensagem()">
-            <span>🎁</span>
-        </div>
+        <div class="pressable-message" onclick="mostrarMensagem()">Pressione para ver algo especial</div>
 
-        <p id="mensagem" class="message">Você é a razão do meu sorriso, meu eterno amor! 💕</p>
-        <p id="poema" class="poem">Em cada amanhecer, o amor por você se renova, <br> Meu coração por você, sempre se estova. <br> Minha vida é você, meu doce encanto, <br> O que há em mim é só o seu encanto. 💖</p>
+        <p id="mensagem" class="message">Você é tudo para mim, meu amor. 💕</p>
+        <p id="poema" class="poem">Em teus olhos vejo meu mundo, <br> No teu sorriso, a paz que procuro. <br> Meu coração é seu, para sempre, amor. 💖</p>
 
-        <!-- Novo botão interativo -->
-        <div class="pressable-message" onclick="mostrarOutroCarinho()">Pressione para mais Carinho!</div>
-
-        <!-- Outro botão para mensagem especial -->
-        <button class="button" onclick="mostrarMensagemEspecial()">Uma Mensagem Especial</button>
-
-        <div id="confetti" class="confetti"></div>
-
-        <p class="surprise" onclick="mostrarSurpresa()">Clique para uma surpresa especial...</p>
+        <button class="button" onclick="revelarPoema()">Mostrar Poema</button>
     </div>
 
     <script>
-        function revelarMensagem() {
+        function mostrarMensagem() {
             const mensagem = document.getElementById('mensagem');
-            const poema = document.getElementById('poema');
             mensagem.classList.add('show-message');
+        }
+
+        function revelarPoema() {
+            const poema = document.getElementById('poema');
             poema.classList.add('show-poem');
-            ativarConfetti();
-        }
-
-        function ativarConfetti() {
-            const confetti = document.getElementById('confetti');
-            confetti.style.display = 'block';
-            
-            for (let i = 0; i < 100; i++) {
-                let confetto = document.createElement('div');
-                confetto.style.left = `${Math.random() * 100}%`;
-                confetto.style.animationDelay = `${Math.random() * 2}s`;
-                confetti.appendChild(confetto);
-            }
-
-            setTimeout(() => {
-                confetti.style.display = 'none';
-                confetti.innerHTML = '';
-            }, 5000);
-        }
-
-        function mostrarOutroCarinho() {
-            alert("Você é minha vida, meu maior tesouro! 💖");
-        }
-
-        function mostrarMensagemEspecial() {
-            alert("Você me faz sentir completo, amor! Cada segundo ao seu lado é mágico. 💖");
-        }
-
-        function mostrarSurpresa() {
-            alert("Você ilumina tudo ao seu redor! 💖");
         }
     </script>
 
