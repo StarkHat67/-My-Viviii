@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama ❤️</title>
+    <title>Para a Minha Dama Incrível 💖</title>
     <style>
         * {
             margin: 0;
@@ -22,14 +22,14 @@
             overflow: hidden;
             flex-direction: column;
             text-align: center;
-            background: linear-gradient(135deg, #ff2b99, #ff94d9);
-            animation: backgroundMove 10s ease-in-out infinite;
+            background: linear-gradient(135deg, #ff0099, #6600cc);
+            animation: backgroundMove 15s ease-in-out infinite;
         }
 
         @keyframes backgroundMove {
-            0% { background: linear-gradient(135deg, #ff2b99, #ff94d9); }
-            50% { background: linear-gradient(135deg, #ff94d9, #ff2b99); }
-            100% { background: linear-gradient(135deg, #ff2b99, #ff94d9); }
+            0% { background: linear-gradient(135deg, #ff0099, #6600cc); }
+            50% { background: linear-gradient(135deg, #6600cc, #ff0099); }
+            100% { background: linear-gradient(135deg, #ff0099, #6600cc); }
         }
 
         h1 {
@@ -40,46 +40,61 @@
         }
 
         @keyframes textAnimation {
-            0% { transform: translateY(-30px); opacity: 0; }
+            0% { transform: translateY(-50px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .heart {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: pulseHeart 1s infinite alternate;
+            color: #fff;
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
         }
 
         .gift-box {
             width: 250px;
             height: 250px;
-            background-color: #FF5C8D;
+            background-color: #ff66cc;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 15px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
             position: relative;
-            animation: boxAnimation 2s ease-in-out infinite alternate;
+            animation: boxShake 2s ease-in-out infinite alternate;
         }
 
-        @keyframes boxAnimation {
+        @keyframes boxShake {
             0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            50% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg); }
         }
 
         .gift-box span {
-            font-size: 3em;
+            font-size: 3.5em;
             z-index: 1;
-            color: #fff;
-            animation: heartBeat 1.5s infinite;
-        }
-
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            color: white;
         }
 
         .button {
             padding: 20px 40px;
             font-size: 1.8em;
-            background-color: #FF5C8D;
+            background-color: #ff66cc;
             color: white;
             border: 2px solid #fff;
             border-radius: 30px;
@@ -89,15 +104,15 @@
         }
 
         .button:hover {
-            background-color: #FF94D9;
+            background-color: #ff94d9;
             transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
         }
 
         .message {
-            font-size: 1.8em;
+            font-size: 2em;
             color: white;
-            margin-top: 40px;
+            margin-top: 30px;
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -112,42 +127,123 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-            animation: sparkle 1.5s infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            animation: sparkleEffect 1.5s infinite;
         }
 
-        @keyframes sparkle {
-            0% { opacity: 0.5; transform: scale(1) translateY(-10px); }
-            100% { opacity: 1; transform: scale(1.2) translateY(10px); }
+        @keyframes sparkleEffect {
+            0% { opacity: 0.7; transform: scale(1) translateY(-20px); }
+            100% { opacity: 1; transform: scale(1.3) translateY(20px); }
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+
+        .confetti div {
+            position: absolute;
+            background-color: #ff0099;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall 2s infinite;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .poem {
+            margin-top: 50px;
+            font-size: 1.8em;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .show-poem {
+            opacity: 1;
+        }
+
+        .surprise {
+            font-size: 2em;
+            color: #ff94d9;
+            margin-top: 40px;
+            text-shadow: 0 0 15px #ff94d9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .surprise:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 30px #ff94d9, 0 0 15px #ff0099;
         }
     </style>
 </head>
 <body>
 
-    <h1>Para a Minha Dama Maravilhosa ❤️</h1>
+    <h1>Para a Minha Dama Incrível 💖</h1>
 
-    <div class="gift-box" onclick="revelarMensagem()">
-        <span>🎁</span>
-        <div class="sparkle"></div>
-        <div class="sparkle" style="animation-delay: 0.3s;"></div>
-        <div class="sparkle" style="animation-delay: 0.6s;"></div>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <div class="gift-box" onclick="revelarMensagem()">
+            <span>🎁</span>
+        </div>
+
+        <p id="mensagem" class="message">Você é o maior presente da minha vida! 💕</p>
+        <p id="poema" class="poem">Em cada amanhecer, meu amor por você cresce. <br> A cada suspiro, minha alma te reconhece. <br> Você é meu tudo, minha razão de existir, <br> Minha eterna paixão, o motivo de sorrir. 💫</p>
+
+        <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
+        
+        <div id="confetti" class="confetti"></div>
+
+        <p class="surprise" onclick="mostrarSurpresa()">Clique para uma surpresa especial...</p>
     </div>
-
-    <p id="mensagem" class="message">Você é a razão de todo o meu amor e felicidade! 💖</p>
-    <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
 
     <script>
         function revelarMensagem() {
             const mensagem = document.getElementById('mensagem');
+            const poema = document.getElementById('poema');
             mensagem.classList.add('show-message');
+            poema.classList.add('show-poem');
+            ativarConfetti();
+        }
+
+        function ativarConfetti() {
+            const confetti = document.getElementById('confetti');
+            confetti.style.display = 'block';
+            
+            for (let i = 0; i < 50; i++) {
+                let confetto = document.createElement('div');
+                confetto.style.left = `${Math.random() * 100}%`;
+                confetto.style.animationDelay = `${Math.random() * 2}s`;
+                confetti.appendChild(confetto);
+            }
+
+            setTimeout(() => {
+                confetti.style.display = 'none';
+                confetti.innerHTML = '';
+            }, 5000);
         }
 
         function mostrarOutroCarinho() {
-            alert("Você é única! Sempre estarei ao seu lado. 💕");
+            alert("Você ilumina minha vida todos os dias! 💕");
+        }
+
+        function mostrarSurpresa() {
+            alert("Você é a estrela que ilumina minha vida! 💖");
         }
     </script>
 
