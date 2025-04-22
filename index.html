@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama ❤️</title>
+    <title>Para a Minha Dama</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: #f8b6d2;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF94C2, #FF6FB2);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,40 +25,46 @@
         }
 
         h1 {
-            font-size: 3em;
-            color: #ffffff;
-            margin-bottom: 20px;
-            animation: slideIn 1.5s ease-out;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        .gift-box {
-            width: 200px;
-            height: 200px;
-            background-color: #ff88b3;
+        .heart {
+            font-size: 4em;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
+            flex-direction: column;
         }
 
-        .gift-box:hover {
+        .button {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background-color: #FF6FB2;
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FF94C2;
             transform: scale(1.1);
         }
 
-        .gift-box span {
-            font-size: 1.8em;
-            color: white;
-            z-index: 1;
-        }
-
         .message {
-            font-size: 1.5em;
-            color: white;
+            font-size: 1.8em;
+            color: #fff;
             margin-top: 20px;
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -63,21 +74,27 @@
             opacity: 1;
         }
 
-        @keyframes slideIn {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <h1>Para a minha dama maravilhosa ❤️</h1>
-    
-    <div class="gift-box" onclick="revelarMensagem()">
-        <span>🎁</span>
-    </div>
+    <h1>Para a Minha Dama 💖</h1>
 
-    <p id="mensagem" class="message">Você é o meu maior presente! 💕</p>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <button class="button" onclick="revelarMensagem()">Clique para uma surpresa!</button>
+        <p id="mensagem" class="message">Você é a razão de meu sorriso todos os dias! 💕</p>
+    </div>
 
     <script>
         function revelarMensagem() {
