@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama</title>
+    <title>Para a Minha Dama ❤️</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #FF94C2, #FF6FB2);
+            background: #111;
             color: white;
             display: flex;
             justify-content: center;
@@ -22,61 +22,52 @@
             overflow: hidden;
             flex-direction: column;
             text-align: center;
+            background: linear-gradient(135deg, #ff2b99, #ff94d9);
+            animation: backgroundMove 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { background: linear-gradient(135deg, #ff2b99, #ff94d9); }
+            50% { background: linear-gradient(135deg, #ff94d9, #ff2b99); }
+            100% { background: linear-gradient(135deg, #ff2b99, #ff94d9); }
         }
 
         h1 {
             font-size: 3.5em;
             margin-bottom: 30px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .heart {
-            font-size: 4em;
+            animation: textAnimation 2s ease-in-out;
             color: #fff;
-            margin-bottom: 20px;
-            animation: heartBeat 1.5s infinite;
         }
 
-        .container {
+        @keyframes textAnimation {
+            0% { transform: translateY(-30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .gift-box {
+            width: 250px;
+            height: 250px;
+            background-color: #FF5C8D;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-        }
-
-        .button {
-            padding: 20px 40px;
-            font-size: 1.5em;
-            background-color: #FF6FB2;
-            color: white;
-            border: 2px solid #fff;
-            border-radius: 30px;
+            border-radius: 15px;
             cursor: pointer;
-            text-transform: uppercase;
-            margin-top: 20px;
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: boxAnimation 2s ease-in-out infinite alternate;
         }
 
-        .button:hover {
-            background-color: #FF94C2;
-            transform: scale(1.1);
+        @keyframes boxAnimation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .message {
-            font-size: 1.8em;
+        .gift-box span {
+            font-size: 3em;
+            z-index: 1;
             color: #fff;
-            margin-top: 20px;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .show-message {
-            opacity: 1;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
+            animation: heartBeat 1.5s infinite;
         }
 
         @keyframes heartBeat {
@@ -84,22 +75,79 @@
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
+
+        .button {
+            padding: 20px 40px;
+            font-size: 1.8em;
+            background-color: #FF5C8D;
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FF94D9;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .message {
+            font-size: 1.8em;
+            color: white;
+            margin-top: 40px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .show-message {
+            opacity: 1;
+            transform: translateY(20px);
+        }
+
+        .sparkle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.5; transform: scale(1) translateY(-10px); }
+            100% { opacity: 1; transform: scale(1.2) translateY(10px); }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Para a Minha Dama 💖</h1>
+    <h1>Para a Minha Dama Maravilhosa ❤️</h1>
 
-    <div class="container">
-        <div class="heart">❤️</div>
-        <button class="button" onclick="revelarMensagem()">Clique para uma surpresa!</button>
-        <p id="mensagem" class="message">Você é a razão de meu sorriso todos os dias! 💕</p>
+    <div class="gift-box" onclick="revelarMensagem()">
+        <span>🎁</span>
+        <div class="sparkle"></div>
+        <div class="sparkle" style="animation-delay: 0.3s;"></div>
+        <div class="sparkle" style="animation-delay: 0.6s;"></div>
     </div>
+
+    <p id="mensagem" class="message">Você é a razão de todo o meu amor e felicidade! 💖</p>
+    <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
 
     <script>
         function revelarMensagem() {
             const mensagem = document.getElementById('mensagem');
             mensagem.classList.add('show-message');
+        }
+
+        function mostrarOutroCarinho() {
+            alert("Você é única! Sempre estarei ao seu lado. 💕");
         }
     </script>
 
