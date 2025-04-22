@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #FFB6C1, #FF1493);
+            background: linear-gradient(135deg, #FF66B2, #FF1493);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,25 +22,19 @@
             color: white;
             overflow: hidden;
             text-align: center;
-            animation: backgroundAnimation 10s ease-in-out infinite;
-        }
-
-        @keyframes backgroundAnimation {
-            0% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
-            50% { background: linear-gradient(135deg, #FF1493, #FFB6C1); }
-            100% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
+            transition: background 2s ease-in-out;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             color: #fff;
-            margin-bottom: 25px;
-            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
             animation: fadeIn 2s ease-out;
         }
 
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-50px); }
+            0% { opacity: 0; transform: translateY(-30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
@@ -69,14 +63,14 @@
         }
 
         .gift-box {
-            width: 220px;
-            height: 220px;
+            width: 250px;
+            height: 250px;
             background-color: #FF66B2;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -84,50 +78,37 @@
 
         .gift-box:hover {
             transform: scale(1.1);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.4);
         }
 
         .gift-box span {
-            font-size: 3.5em;
+            font-size: 4em;
             color: white;
-            z-index: 1;
         }
 
-        .message {
-            font-size: 1.6em;
+        .message, .poem {
+            font-size: 1.5em;
             color: #fff;
             margin-top: 30px;
+            transition: opacity 2s ease, transform 1s ease;
             opacity: 0;
-            transition: opacity 1.5s ease;
         }
 
-        .show-message {
+        .show-message, .show-poem {
             opacity: 1;
             transform: translateY(20px);
         }
 
-        .poem {
-            font-size: 1.5em;
-            color: #FFF;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            margin-top: 40px;
-        }
-
-        .show-poem {
-            opacity: 1;
-        }
-
         .button {
             padding: 15px 35px;
-            font-size: 1.5em;
+            font-size: 1.4em;
             background-color: #FF66B2;
             color: white;
             border: none;
             border-radius: 30px;
-            margin-top: 30px;
+            margin-top: 20px;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .button:hover {
@@ -136,8 +117,8 @@
         }
 
         .surprise {
-            font-size: 1.6em;
-            margin-top: 40px;
+            font-size: 1.5em;
+            margin-top: 30px;
             color: #FF94D9;
             cursor: pointer;
             text-shadow: 0 0 10px #FF94D9;
@@ -147,6 +128,28 @@
         .surprise:hover {
             transform: scale(1.1);
             text-shadow: 0 0 25px #FF94D9, 0 0 15px #FF66B2;
+        }
+
+        /* Estilo de mensagem pressionável */
+        .pressable-message {
+            background-color: #FF66B2;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.5em;
+            width: 80%;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .pressable-message:hover {
+            background-color: #FF3399;
+            transform: scale(1.05);
+        }
+
+        .pressable-message:active {
+            background-color: #FF1493;
+            transform: scale(0.95);
         }
 
         /* Confetti Animation */
@@ -174,71 +177,6 @@
             0% { transform: translateY(0) rotate(0deg); }
             100% { transform: translateY(100vh) rotate(360deg); }
         }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .heart {
-                font-size: 3.5em;
-            }
-
-            .gift-box {
-                width: 180px;
-                height: 180px;
-            }
-
-            .message {
-                font-size: 1.4em;
-            }
-
-            .poem {
-                font-size: 1.4em;
-            }
-
-            .button {
-                font-size: 1.3em;
-                padding: 12px 28px;
-            }
-
-            .surprise {
-                font-size: 1.3em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6em;
-            }
-
-            .heart {
-                font-size: 3em;
-            }
-
-            .gift-box {
-                width: 150px;
-                height: 150px;
-            }
-
-            .message {
-                font-size: 1.2em;
-            }
-
-            .poem {
-                font-size: 1.2em;
-            }
-
-            .button {
-                font-size: 1.1em;
-                padding: 10px 24px;
-            }
-
-            .surprise {
-                font-size: 1.2em;
-            }
-        }
     </style>
 </head>
 <body>
@@ -254,8 +192,10 @@
         <p id="mensagem" class="message">Você é a razão do meu sorriso, meu eterno amor! 💕</p>
         <p id="poema" class="poem">Em cada amanhecer, o amor por você se renova, <br> Meu coração por você, sempre se estova. <br> Minha vida é você, meu doce encanto, <br> O que há em mim é só o seu encanto. 💖</p>
 
-        <!-- Dois botões com funcionalidades diferentes -->
-        <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
+        <!-- Novo botão interativo -->
+        <div class="pressable-message" onclick="mostrarOutroCarinho()">Pressione para mais Carinho!</div>
+
+        <!-- Outro botão para mensagem especial -->
         <button class="button" onclick="mostrarMensagemEspecial()">Uma Mensagem Especial</button>
 
         <div id="confetti" class="confetti"></div>
@@ -304,4 +244,3 @@
 
 </body>
 </html>
-
