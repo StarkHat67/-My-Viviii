@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama Incrível 💖</title>
+    <title>Para a Minha Dama 💖</title>
     <style>
         * {
             margin: 0;
@@ -13,110 +13,92 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: #111;
-            color: white;
+            background: linear-gradient(135deg, #FFB6C1, #FF1493);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
             flex-direction: column;
+            color: white;
+            overflow: hidden;
             text-align: center;
-            background: linear-gradient(135deg, #ff0099, #6600cc);
-            animation: backgroundMove 15s ease-in-out infinite;
+            animation: backgroundAnimation 10s ease-in-out infinite;
         }
 
-        @keyframes backgroundMove {
-            0% { background: linear-gradient(135deg, #ff0099, #6600cc); }
-            50% { background: linear-gradient(135deg, #6600cc, #ff0099); }
-            100% { background: linear-gradient(135deg, #ff0099, #6600cc); }
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
+            50% { background: linear-gradient(135deg, #FF1493, #FFB6C1); }
+            100% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            animation: textAnimation 2s ease-in-out;
+            font-size: 3em;
             color: #fff;
+            margin-bottom: 25px;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
+            animation: fadeIn 2s ease-out;
         }
 
-        @keyframes textAnimation {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             position: relative;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+            animation: slideUp 2s ease-out;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .heart {
             font-size: 4em;
-            margin-bottom: 15px;
-            animation: pulseHeart 1s infinite alternate;
-            color: #fff;
+            margin: 10px;
+            animation: pulse 1.5s infinite alternate;
         }
 
-        @keyframes pulseHeart {
+        @keyframes pulse {
             0% { transform: scale(1); opacity: 0.7; }
             50% { transform: scale(1.2); opacity: 1; }
             100% { transform: scale(1); opacity: 0.7; }
         }
 
         .gift-box {
-            width: 200px;
-            height: 200px;
-            background-color: #ff66cc;
+            width: 220px;
+            height: 220px;
+            background-color: #FF66B2;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 15px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
             position: relative;
-            animation: boxShake 2s ease-in-out infinite alternate;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        @keyframes boxShake {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(15deg); }
-            100% { transform: rotate(0deg); }
+        .gift-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
         }
 
         .gift-box span {
             font-size: 3.5em;
+            color: white;
             z-index: 1;
-            color: white;
-        }
-
-        .button {
-            padding: 15px 30px;
-            font-size: 1.5em;
-            background-color: #ff66cc;
-            color: white;
-            border: 2px solid #fff;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #ff94d9;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
         }
 
         .message {
             font-size: 1.6em;
-            color: white;
-            margin-top: 20px;
+            color: #fff;
+            margin-top: 30px;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1.5s ease;
         }
 
         .show-message {
@@ -124,6 +106,50 @@
             transform: translateY(20px);
         }
 
+        .poem {
+            font-size: 1.5em;
+            color: #FFF;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            margin-top: 40px;
+        }
+
+        .show-poem {
+            opacity: 1;
+        }
+
+        .button {
+            padding: 15px 35px;
+            font-size: 1.5em;
+            background-color: #FF66B2;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FF3399;
+            transform: scale(1.1);
+        }
+
+        .surprise {
+            font-size: 1.6em;
+            margin-top: 40px;
+            color: #FF94D9;
+            cursor: pointer;
+            text-shadow: 0 0 10px #FF94D9;
+            transition: all 0.3s ease;
+        }
+
+        .surprise:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 25px #FF94D9, 0 0 15px #FF66B2;
+        }
+
+        /* Confetti Animation */
         .confetti {
             position: absolute;
             top: 0;
@@ -138,10 +164,10 @@
 
         .confetti div {
             position: absolute;
-            background-color: #ff0099;
-            width: 10px;
-            height: 10px;
-            animation: confettiFall 2s infinite;
+            background-color: #FF1493;
+            width: 12px;
+            height: 12px;
+            animation: confettiFall 3s infinite ease-in-out;
         }
 
         @keyframes confettiFall {
@@ -149,36 +175,42 @@
             100% { transform: translateY(100vh) rotate(360deg); }
         }
 
-        .poem {
-            margin-top: 40px;
-            font-size: 1.6em;
-            color: #fff;
-            opacity: 0;
-            transition: opacity 3s ease-in-out;
-        }
-
-        .show-poem {
-            opacity: 1;
-        }
-
-        .surprise {
-            font-size: 1.6em;
-            color: #ff94d9;
-            margin-top: 30px;
-            text-shadow: 0 0 15px #ff94d9;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .surprise:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 30px #ff94d9, 0 0 15px #ff0099;
-        }
-
         /* Responsividade */
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
+            }
+
+            .heart {
+                font-size: 3.5em;
+            }
+
+            .gift-box {
+                width: 180px;
+                height: 180px;
+            }
+
+            .message {
+                font-size: 1.4em;
+            }
+
+            .poem {
+                font-size: 1.4em;
+            }
+
+            .button {
+                font-size: 1.3em;
+                padding: 12px 28px;
+            }
+
+            .surprise {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
             }
 
             .heart {
@@ -190,53 +222,17 @@
                 height: 150px;
             }
 
-            .button {
-                font-size: 1.3em;
-                padding: 12px 25px;
-            }
-
-            .message {
-                font-size: 1.4em;
-            }
-
-            .poem {
-                font-size: 1.4em;
-            }
-
-            .surprise {
-                font-size: 1.4em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            .heart {
-                font-size: 2.5em;
-            }
-
-            .gift-box {
-                width: 130px;
-                height: 130px;
-            }
-
-            .button {
-                font-size: 1.2em;
-                padding: 10px 20px;
-            }
-
             .message {
                 font-size: 1.2em;
             }
 
             .poem {
                 font-size: 1.2em;
+            }
+
+            .button {
+                font-size: 1.1em;
+                padding: 10px 24px;
             }
 
             .surprise {
@@ -247,7 +243,7 @@
 </head>
 <body>
 
-    <h1>Para a Minha Dama Incrível 💖</h1>
+    <h1>Para a Minha Dama 💖</h1>
 
     <div class="container">
         <div class="heart">❤️</div>
@@ -255,8 +251,8 @@
             <span>🎁</span>
         </div>
 
-        <p id="mensagem" class="message">Você é o maior presente da minha vida! 💕</p>
-        <p id="poema" class="poem">Em cada amanhecer, meu amor por você cresce. <br> A cada suspiro, minha alma te reconhece. <br> Você é meu tudo, minha razão de existir, <br> Minha eterna paixão, o motivo de sorrir. 💫</p>
+        <p id="mensagem" class="message">Você é a razão do meu sorriso, meu eterno amor! 💕</p>
+        <p id="poema" class="poem">Em cada amanhecer, o amor por você se renova, <br> Meu coração por você, sempre se estova. <br> Minha vida é você, meu doce encanto, <br> O que há em mim é só o seu encanto. 💖</p>
 
         <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
         
@@ -278,7 +274,7 @@
             const confetti = document.getElementById('confetti');
             confetti.style.display = 'block';
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 100; i++) {
                 let confetto = document.createElement('div');
                 confetto.style.left = `${Math.random() * 100}%`;
                 confetto.style.animationDelay = `${Math.random() * 2}s`;
@@ -292,11 +288,11 @@
         }
 
         function mostrarOutroCarinho() {
-            alert("Você ilumina minha vida todos os dias! 💕");
+            alert("Você é minha vida, meu maior tesouro! 💖");
         }
 
         function mostrarSurpresa() {
-            alert("Você é a estrela que ilumina minha vida! 💖");
+            alert("Você ilumina tudo ao seu redor! 💖");
         }
     </script>
 
