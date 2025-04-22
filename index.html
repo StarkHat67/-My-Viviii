@@ -33,8 +33,8 @@
         }
 
         h1 {
-            font-size: 3.5em;
-            margin-bottom: 30px;
+            font-size: 2em;
+            margin-bottom: 20px;
             animation: textAnimation 2s ease-in-out;
             color: #fff;
         }
@@ -50,11 +50,13 @@
             align-items: center;
             flex-direction: column;
             position: relative;
+            text-align: center;
+            padding: 20px;
         }
 
         .heart {
-            font-size: 5em;
-            margin-bottom: 20px;
+            font-size: 4em;
+            margin-bottom: 15px;
             animation: pulseHeart 1s infinite alternate;
             color: #fff;
         }
@@ -66,8 +68,8 @@
         }
 
         .gift-box {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             background-color: #ff66cc;
             display: flex;
             justify-content: center;
@@ -92,27 +94,27 @@
         }
 
         .button {
-            padding: 20px 40px;
-            font-size: 1.8em;
+            padding: 15px 30px;
+            font-size: 1.5em;
             background-color: #ff66cc;
             color: white;
             border: 2px solid #fff;
             border-radius: 30px;
             cursor: pointer;
-            margin-top: 40px;
+            margin-top: 30px;
             transition: all 0.3s ease;
         }
 
         .button:hover {
             background-color: #ff94d9;
-            transform: scale(1.2);
+            transform: scale(1.1);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
         }
 
         .message {
-            font-size: 2em;
+            font-size: 1.6em;
             color: white;
-            margin-top: 30px;
+            margin-top: 20px;
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -120,24 +122,6 @@
         .show-message {
             opacity: 1;
             transform: translateY(20px);
-        }
-
-        .sparkle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-            animation: sparkleEffect 1.5s infinite;
-        }
-
-        @keyframes sparkleEffect {
-            0% { opacity: 0.7; transform: scale(1) translateY(-20px); }
-            100% { opacity: 1; transform: scale(1.3) translateY(20px); }
         }
 
         .confetti {
@@ -166,8 +150,8 @@
         }
 
         .poem {
-            margin-top: 50px;
-            font-size: 1.8em;
+            margin-top: 40px;
+            font-size: 1.6em;
             color: #fff;
             opacity: 0;
             transition: opacity 3s ease-in-out;
@@ -178,17 +162,86 @@
         }
 
         .surprise {
-            font-size: 2em;
+            font-size: 1.6em;
             color: #ff94d9;
-            margin-top: 40px;
+            margin-top: 30px;
             text-shadow: 0 0 15px #ff94d9;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .surprise:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
             text-shadow: 0 0 30px #ff94d9, 0 0 15px #ff0099;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .heart {
+                font-size: 3em;
+            }
+
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .button {
+                font-size: 1.3em;
+                padding: 12px 25px;
+            }
+
+            .message {
+                font-size: 1.4em;
+            }
+
+            .poem {
+                font-size: 1.4em;
+            }
+
+            .surprise {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .heart {
+                font-size: 2.5em;
+            }
+
+            .gift-box {
+                width: 130px;
+                height: 130px;
+            }
+
+            .button {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+
+            .message {
+                font-size: 1.2em;
+            }
+
+            .poem {
+                font-size: 1.2em;
+            }
+
+            .surprise {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
