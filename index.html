@@ -1,37 +1,233 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Minha Dama 💖</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para a Minha Dama 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #FFB6C1, #FF1493);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+      animation: backgroundAnimation 10s ease-in-out infinite;
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
+      50% { background: linear-gradient(135deg, #FF1493, #FFB6C1); }
+      100% { background: linear-gradient(135deg, #FFB6C1, #FF1493); }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px rgba(255,255,255,0.6);
+      animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      padding: 30px;
+      animation: slideUp 2s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .heart {
+      font-size: 4em;
+      margin: 10px;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    .gift-box {
+      width: 220px;
+      height: 220px;
+      background-color: #FF66B2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+    }
+
+    .gift-box span {
+      font-size: 3.5em;
+      color: white;
+    }
+
+    .message, .poem {
+      font-size: 1.5em;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .show-message, .show-poem {
+      opacity: 1;
+    }
+
+    .button {
+      padding: 15px 35px;
+      font-size: 1.2em;
+      background-color: #FF66B2;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      margin: 20px 10px 0;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #FF3399;
+      transform: scale(1.1);
+    }
+
+    .surprise {
+      font-size: 1.4em;
+      margin-top: 40px;
+      color: #FF94D9;
+      cursor: pointer;
+      text-shadow: 0 0 10px #FF94D9;
+      transition: all 0.3s ease;
+    }
+
+    .surprise:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 25px #FF94D9, 0 0 15px #FF66B2;
+    }
+
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      display: none;
+    }
+
+    .confetti div {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      animation: confettiFall 3s infinite ease-in-out;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+  </style>
 </head>
 <body>
-    <main>
-        <h1>Para a Minha Dama 💖</h1>
-        <section class="container">
-            <div class="heart" aria-label="Coração">❤️</div>
-            <div class="gift-box" role="button" aria-label="Abrir presente">
-                <span>🎁</span>
-            </div>
+  <h1>Para a Minha Dama Viviiii 💖</h1>
 
-            <p id="mensagem" class="message">Você é a razão do meu sorriso, meu eterno amor! 💕</p>
-            <p id="poema" class="poem">
-                Em cada amanhecer, o amor por você se renova, <br>
-                Meu coração por você, sempre se estova. <br>
-                Minha vida é você, meu doce encanto, <br>
-                O que há em mim é só o seu encanto. 💖
-            </p>
+  <div class="container">
+    <div class="heart">❤️</div>
+    <div class="gift-box" onclick="revelarMensagem()">
+      <span>🎁</span>
+    </div>
 
-            <button class="button" id="btnCarinho">Mais Carinho?</button>
-            <button class="button" id="btnEspecial">Uma Mensagem Especial</button>
+    <p id="mensagem" class="message">Você é a razão do meu sorriso, meu eterno amor! 💕</p>
+    <p id="poema" class="poem">
+      Em cada amanhecer, o amor por você se renova, <br>
+      Meu coração por você, sempre se estova. <br>
+      Minha vida é você, meu doce encanto, <br>
+      O que há em mim é só o seu encanto. 💖
+    </p>
 
-            <div id="confetti" class="confetti"></div>
+    <button class="button" onclick="mostrarOutroCarinho()">Mais Carinho?</button>
+    <button class="button" onclick="mostrarMensagemEspecial()">Uma Mensagem Especial</button>
 
-            <p class="surprise" role="button">Clique para uma surpresa especial...</p>
-        </section>
-    </main>
+    <div id="confetti" class="confetti"></div>
 
-    <script src="script.js"></script>
+    <p class="surprise" onclick="mostrarSurpresa()">Clique para uma surpresa especial...</p>
+  </div>
+
+  <script>
+    const audio = new Audio('https://www.soundjay.com/button/beep-07.wav'); // Mude o link para sua música romântica aqui!
+
+    function revelarMensagem() {
+      const msg = document.getElementById('mensagem');
+      const poema = document.getElementById('poema');
+      msg.classList.add('show-message');
+      poema.classList.add('show-poem');
+      ativarConfetti();
+      tocarAudio();
+    }
+
+    function ativarConfetti() {
+      const confetti = document.getElementById('confetti');
+      confetti.style.display = 'block';
+      const cores = ['#FF1493', '#FFD700', '#00CED1', '#ADFF2F', '#FF69B4'];
+
+      for (let i = 0; i < 100; i++) {
+        let c = document.createElement('div');
+        c.style.left = `${Math.random() * 100}%`;
+        c.style.animationDelay = `${Math.random() * 2}s`;
+        c.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+        confetti.appendChild(c);
+      }
+
+      setTimeout(() => {
+        confetti.style.display = 'none';
+        confetti.innerHTML = '';
+      }, 5000);
+    }
+
+    function tocarAudio() {
+      audio.play(); // Toca o áudio romântico
+    }
+
+    function mostrarOutroCarinho() {
+      alert("Você é minha vida, meu maior tesouro! 💖");
+    }
+
+    function mostrarMensagemEspecial() {
+      alert("Você me faz sentir completo, amor! Cada segundo ao seu lado é mágico. 💖");
+    }
+
+    function mostrarSurpresa() {
+      alert("Você ilumina tudo ao seu redor! 💖");
+    }
+  </script>
 </body>
 </html>
