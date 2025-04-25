@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para a Vivi 💖</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(120deg, #ffdde1, #ee9ca7);
       font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       overflow: hidden;
-      color: white;
-      text-align: center;
-      position: relative;
     }
 
     h1 {
       font-size: 3rem;
-      animation: fadeIn 2s ease-out forwards;
+      margin-bottom: 15px;
+      animation: fadeIn 1.5s ease-out;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
     .typing {
-      margin-top: 20px;
-      font-size: 1.5rem;
       white-space: pre-wrap;
-      border-right: 2px solid #fff;
-      animation: typing-blink 0.7s infinite;
+      font-size: 1.3rem;
+      max-width: 90%;
+      margin: 20px auto;
+      border-right: 2px solid white;
+      animation: blink 1s infinite;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-30px); }
+      from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes typing-blink {
-      0% { border-color: white; }
+    @keyframes blink {
+      0%, 100% { border-color: white; }
       50% { border-color: transparent; }
-      100% { border-color: white; }
     }
 
     .button {
-      margin-top: 40px;
-      background-color: #ff5e9c;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 15px 30px;
+      margin-top: 30px;
+      padding: 15px 35px;
       font-size: 1.2rem;
+      background-color: #ff5e9c;
+      border: none;
+      border-radius: 30px;
       cursor: pointer;
-      transition: 0.3s;
+      color: white;
+      transition: 0.3s ease;
     }
 
     .button:hover {
@@ -73,93 +74,150 @@
       pointer-events: none;
       z-index: 0;
     }
+
+    .audio-control {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff2f7;
+      border-radius: 25px;
+      padding: 10px 20px;
+      color: #ff3380;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+
+    .audio-control:hover {
+      background: #ffe6f0;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .typing { font-size: 1.1rem; }
+      .button { font-size: 1rem; padding: 12px 25px; }
+    }
   </style>
 </head>
 <body>
 
-  <canvas id="confetti"></canvas>
+<canvas id="confetti"></canvas>
 
-  <h1>Para a Vivi 💖</h1>
-  <div id="typing" class="typing"></div>
+<h1>Para a Vivi 💖</h1>
+<div id="typing" class="typing"></div>
+<button class="button" onclick="mostrarMensagem()">Mostrar carinho</button>
+<div class="audio-control" onclick="toggleAudio()">🔊 Música</div>
 
-  <button class="button" onclick="startSurprise()">Clique aqui, meu amor</button>
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/05/23/audio_c6c084d236.mp3" type="audio/mp3">
+</audio>
 
-  <audio id="bgm" autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2023/03/06/audio_77619623d8.mp3" type="audio/mp3">
-  </audio>
+<script>
+  const texto = `Minha Vivi...
 
-  <script>
-    const texto = `Vivi...\nVocê é o motivo do meu sorriso.\nÉ o calor do meu dia e o sonho da minha noite.\nEu te amo como nunca amei antes. 💖`;
-    const typingElement = document.getElementById('typing');
+Desde o momento em que você entrou na minha vida, tudo ganhou cor.
+O mundo parece mais leve, o tempo mais doce, e cada batida do meu coração ecoa seu nome.
 
-    function escreverTexto(texto, el, delay = 50) {
-      el.textContent = '';
-      let i = 0;
-      const intervalo = setInterval(() => {
-        el.textContent += texto[i];
-        i++;
-        if (i >= texto.length) clearInterval(intervalo);
-      }, delay);
-    }
+Você é minha paz, meu abrigo, meu presente favorito.
+Nos teus olhos vejo o futuro que sempre sonhei.
 
-    function startSurprise() {
-      escreverTexto(texto, typingElement);
+Você é poesia viva, minha alegria diária, e o amor que faz tudo valer a pena.
+
+Te amo com tudo que sou. 💖
+
+Com amor, sempre...
+Teu eterno namorado.`;
+
+  const el = document.getElementById('typing');
+  const audio = document.getElementById('bgm');
+  let escrevendo = false;
+
+  function escreverTexto(texto, el, delay = 40) {
+    el.textContent = '';
+    let i = 0;
+    escrevendo = true;
+    const intervalo = setInterval(() => {
+      el.textContent += texto[i];
+      i++;
+      if (i >= texto.length) {
+        clearInterval(intervalo);
+        escrevendo = false;
+      }
+    }, delay);
+  }
+
+  function mostrarMensagem() {
+    if (!escrevendo) {
+      escreverTexto(texto, el);
       iniciarConfete();
+      audio.play();
     }
+  }
 
-    // Confetti 🎉
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let confetti = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
     }
+  }
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+  // Confete animado
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  let confetti = [];
 
-    function criarConfete() {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height - canvas.height,
-        r: Math.random() * 6 + 4,
-        d: Math.random() * 5 + 2,
-        color: ['#ff66b2', '#ffc0cb', '#fffacd', '#ffb6c1'][Math.floor(Math.random() * 4)],
-        tilt: Math.random() * 10 - 10,
-        tiltAngle: 0,
-        tiltAngleIncremental: (Math.random() * 0.07) + 0.05
-      };
-    }
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 
-    function iniciarConfete() {
-      confetti = Array.from({ length: 150 }, criarConfete);
-      requestAnimationFrame(drawConfetti);
-    }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confetti.forEach(c => {
-        ctx.beginPath();
-        ctx.lineWidth = c.r;
-        ctx.strokeStyle = c.color;
-        ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
-        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
-        ctx.stroke();
+  function criarConfete() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 5 + 2,
+      color: ['#ff66b2', '#ffc0cb', '#fffacd', '#ffb6c1'][Math.floor(Math.random() * 4)],
+      tilt: Math.random() * 10 - 10,
+      tiltAngle: 0,
+      tiltAngleIncremental: (Math.random() * 0.07) + 0.05
+    };
+  }
 
-        c.y += c.d;
-        c.tiltAngle += c.tiltAngleIncremental;
-        c.tilt = Math.sin(c.tiltAngle) * 15;
+  function iniciarConfete() {
+    confetti = Array.from({ length: 150 }, criarConfete);
+    drawConfetti();
+  }
 
-        if (c.y > canvas.height) {
-          c.x = Math.random() * canvas.width;
-          c.y = -10;
-        }
-      });
-      requestAnimationFrame(drawConfetti);
-    }
-  </script>
+  function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confetti.forEach(c => {
+      ctx.beginPath();
+      ctx.lineWidth = c.r;
+      ctx.strokeStyle = c.color;
+      ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+      ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
+      ctx.stroke();
+
+      c.y += c.d;
+      c.tiltAngle += c.tiltAngleIncremental;
+      c.tilt = Math.sin(c.tiltAngle) * 15;
+
+      if (c.y > canvas.height) {
+        c.x = Math.random() * canvas.width;
+        c.y = -10;
+      }
+    });
+
+    requestAnimationFrame(drawConfetti);
+  }
+</script>
 
 </body>
 </html>
